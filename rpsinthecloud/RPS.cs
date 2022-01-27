@@ -27,9 +27,16 @@ namespace rpsinthecloud
             //Serialize the response into a usable object
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             dynamic data = JsonConvert.DeserializeObject(requestBody);
-            
+
             //data is accessible like a .Net object, therefore we can use the . operator to access the move property
-            string userMove = data.move;
+            string userMove;
+            try
+            {
+                userMove = data.move;
+            } catch
+            {
+                userMove = req.Query["move"];
+            }
             //string userMove = data["move"];
 
             //Choose a move to send back to the user
@@ -45,10 +52,10 @@ namespace rpsinthecloud
             uMove = uMove.ToLower();
             cMove = cMove.ToLower();
             if (uMove == cMove) { return "tie";  };
-            if (uMove == "rock" && cMove == "paper") { return "lose"; }
-            if (uMove == "paper" && cMove == "scissors") { return "lose"; }
-            if (uMove == "scissors" && cMove == "rock") { return "lose"; }
-            return "win";
+            if (cMove == "rock" && uMove == "paper") { return "win"; }
+            if (cMove == "paper" && uMove == "scissors") { return "win"; }
+            if (cMove == "scissors" && uMove == "rock") { return "win"; }
+            return "lose";
         }
 
         public static string MakeMove(ILogger l)

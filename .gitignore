@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/rpsinthecloud/Properties/serviceDependencies.fa-rpsinthecloud-prod-use2 - Zip Deploy.json
+/rpsinthecloud/Properties/ServiceDependencies/fa-rpsinthecloud-prod-use2 - Zip Deploy/appInsights1.arm.json
+/rpsinthecloud/Properties/ServiceDependencies/fa-rpsinthecloud-prod-use2 - Zip Deploy/storage1.arm.json
